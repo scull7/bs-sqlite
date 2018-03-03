@@ -1,0 +1,26 @@
+{
+  "name": "bs-sqlite",
+  "version": "0.0.1",
+  "description": "A wrapper for the sqlite3 driver",
+  "scripts": {
+    "build": "bsb -make-world",
+    "clean": "bsb -clean-world",
+    "coverage": "nyc report --temp-directory=coverage --reporter=text-lcov | coveralls",
+    "start": " yarn install ; bsb -clean-world ; bsb -make-world -w",
+    "test": "bsb -clean-world ; bsb -make-world ; jest --coverage ; yarn coverage ",
+    "watch:test": "jest --coverage --watchAll"
+  },
+  "main": "index.js",
+  "author": "Nathan A Sculli <scull7@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "better-sqlite3": "^4.1.0"
+  },
+  "devDependencies": {
+    "@glennsl/bs-jest": "^0.4.2",
+    "@glennsl/bs-json": "^1.1.2",
+    "bs-platform": "^2.2.1",
+    "coveralls": "^3.0.0",
+    "nyc": "^11.4.1"
+  }
+}
