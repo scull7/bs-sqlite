@@ -14,6 +14,11 @@ type test_all_row = {
   foo: string;
 }
 
+type test_file_row = {
+  bar: string;
+  baz: string;
+}
+
 let decode_insert_result json = Json.Decode.({
   changes = json |> field "changes" int;
   last_insert_id = json |> field "lastInsertROWID" int;
@@ -22,6 +27,11 @@ let decode_insert_result json = Json.Decode.({
 let decode_test_all_row json = Json.Decode.({
   id = json |> field "id" (optional int);
   foo = json |> field "foo" string;
+})
+
+let decode_test_file_row json = Json.Decode.({
+  bar = json |> field "bar" string;
+  baz = json |> field "baz" string;
 })
 
 let runner db expected sql fn = (fun () ->
@@ -108,4 +118,38 @@ describe "`all` and `run` functions" (fun () ->
     |> Expect.expect
     |> Expect.toBeSupersetOf [| "moo"; |]
   );
+);
+
+describe "File based database" (fun () ->
+  let db_path = "/tmp/test.db"
+  in
+  beforeAll (fun () ->
+    let db = Sqlite.Connection.make ~path:db_path ()
+    in
+    let _ = Sqlite.Connection.prepare db {|
+      CREATE TABLE `test_file_db` (
+        `bar`
+      , `baz`
+      )
+    |}
+    |> (fun s -> Sqlite.Statement.run s [||])
+    in
+    ()
+  );
+  afterAll(fun () -> Node.Fs.unlinkSync db_path);
+
+  test "insert and retrieve record from file database" (fun () ->
+    let db = Sqlite.Connection.make ~path:db_path ~fileMustExist:Js.true_ ()
+    in
+    Sqlite.Connection.prepare db {|
+      INSERT INTO `test_file_db` (`bar`, `baz`) VALUES ('moo', 'cow')
+    |}
+    |> (fun s -> Sqlite.Statement.run s [||])
+    |> decode_insert_result
+    |> (fun { changes; last_insert_id; } -> [| changes; last_insert_id; |])
+    |> Expect.expect
+    |> Expect.toBeSupersetOf [| 1; 1 |]
+  );
+
+  ()
 );
