@@ -19,6 +19,10 @@ _build/
 setup.data
 setup.log
 
+# BuckleScript
 /coverage
 /node_modules
 /lib
+*.log
+*.bsb.lock
+*.merlin
