@@ -1,6 +1,6 @@
 {
   "name": "bs-sqlite",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A wrapper for the sqlite3 driver",
   "scripts": {
     "build": "bsb -make-world",
