@@ -10,6 +10,17 @@
     "test": "bsb -clean-world ; bsb -make-world ; jest --coverage ; yarn coverage ",
     "watch:test": "jest --coverage --watchAll"
   },
+  "keywords": [
+    "BuckleScript",
+    "reason",
+    "reasonml",
+    "sql",
+    "databases",
+    "node",
+    "sqlite",
+    "sqlite3",
+    "better-sqlite3"
+  ],
   "main": "index.js",
   "author": "Nathan A Sculli <scull7@gmail.com>",
   "license": "MIT",

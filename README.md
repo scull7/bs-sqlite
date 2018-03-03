@@ -26,6 +26,38 @@ Bindings to the [better-sqlite3] module for interaction with Sqlite databases.
   )
 ```
 
+### Use named parameters
+
+#### Using :x format
+```ocaml
+  let db = Sqlite.Connection.make ~path:"test.db" ~memory:Js.true_ ()
+
+  let _ = Sqlite.Connection.prepare db "SELECT :x + :y AS result"
+        |> Sqlite.Statement.get_named [%bs.obj { x = 1; y = 2 }]
+        |> Js.log
+  )
+```
+
+#### Using $x format
+```ocaml
+  let db = Sqlite.Connection.make ~path:"test.db" ~memory:Js.true_ ()
+
+  let _ = Sqlite.Connection.prepare db "SELECT $x + $y AS result"
+        |> Sqlite.Statement.get_named [%bs.obj { x = 1; y = 2 }]
+        |> Js.log
+  )
+```
+
+#### Using @x format
+```ocaml
+  let db = Sqlite.Connection.make ~path:"test.db" ~memory:Js.true_ ()
+
+  let _ = Sqlite.Connection.prepare db "SELECT @x + @y AS result"
+        |> Sqlite.Statement.get_named [%bs.obj { x = 1; y = 2 }]
+        |> Js.log
+  )
+```
+
 ## How do I install it?
 
 Inside of a BuckleScript project:
