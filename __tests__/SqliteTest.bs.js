@@ -132,6 +132,13 @@ describe("File based database", (function () {
                                 param[/* last_insert_id */1]
                               ]));
               }));
+        Jest.test("read-only flag", (function () {
+                var db = Sqlite.Connection[/* make */1](db_path, /* None */0, /* Some */[true], /* None */0, /* () */0);
+                return Jest.Expect[/* toThrowMessageRe */22]((/attempt to write a readonly database/), Jest.Expect[/* expect */0]((function () {
+                                  var s = db.prepare("\n        INSERT INTO `test_file_db` (`bar`, `baz`) VALUES ('fail', 'stuff')\n      ");
+                                  return s.run();
+                                })));
+              }));
         return /* () */0;
       }));
 

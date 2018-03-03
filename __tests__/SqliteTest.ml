@@ -151,5 +151,17 @@ describe "File based database" (fun () ->
     |> Expect.toBeSupersetOf [| 1; 1 |]
   );
 
+  test "read-only flag" (fun () ->
+    let db = Sqlite.Connection.make ~path:db_path ~readonly:Js.true_ ()
+    in
+    Expect.expect (fun () ->
+      Sqlite.Connection.prepare db {|
+        INSERT INTO `test_file_db` (`bar`, `baz`) VALUES ('fail', 'stuff')
+      |}
+      |> (fun s -> Sqlite.Statement.run s [||])
+    )
+    |> Expect.toThrowMessageRe [%re "/attempt to write a readonly database/"]
+  );
+
   ()
 );
