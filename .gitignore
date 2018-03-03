@@ -26,3 +26,4 @@ setup.log
 *.log
 *.bsb.lock
 *.merlin
+/**/*.bs.js
