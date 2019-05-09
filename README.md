@@ -1,5 +1,6 @@
 [![Build Status](https://www.travis-ci.org/scull7/bs-sqlite.svg?branch=master)](https://www.travis-ci.org/scull7/bs-sqlite)
 [![Coverage Status](https://coveralls.io/repos/github/scull7/bs-sqlite/badge.svg?branch=master)](https://coveralls.io/github/scull7/bs-sqlite?branch=master)
+[![NPM version](http://img.shields.io/npm/v/bs-sqlite.svg)](https://www.npmjs.org/package/bs-sqlite)
 
 # bs-sqlite
 Bindings to the [better-sqlite3] module for interaction with Sqlite databases.
