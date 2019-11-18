@@ -30,6 +30,9 @@
   ],
   "main": "index.js",
   "author": "Nathan A Sculli <scull7@gmail.com>",
+  "homepage": "https://github.com/scull7/bs-sqlite/",
+  "repository": "https://github.com/scull7/bs-sqlite/",
+  "bugs": "https://github.com/scull7/bs-sqlite/issues",
   "license": "MIT",
   "dependencies": {
     "better-sqlite3": "^4.1.0"
