@@ -63,7 +63,7 @@ Bindings to the [better-sqlite3] module for interaction with Sqlite databases.
 Inside of a BuckleScript project:
 
 ```shell
-yarn install --save bs-sqlite
+yarn add bs-sqlite
 ```
 
 Then add `bs-sqlite` to your `bs-dependencies` in `bsconfig.json`:
