@@ -2,7 +2,7 @@
 module Statement = {
   type t
 
-  type columnObj = {
+  type column_resp = {
     name: string,
     column: string,
     table: string,
@@ -30,7 +30,7 @@ module Statement = {
   @bs.send external raw: (t, bool) => t = "raw"
   @bs.send external raw_toggle: (t) => t = "raw"
 
-  @bs.send external columns: (t) => array<columnObj> = "raw"
+  @bs.send external columns: (t) => array<column_resp> = "raw"
 
   @bs.send @variadic external bind: (t, array<'a>) => Js.Array.t<Js.Json.t> = "bind"
   @bs.send external bind_named: (t, 'a) => Js.Json.t = "bind"
