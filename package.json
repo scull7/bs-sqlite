@@ -6,16 +6,9 @@
     "build": "bsb -make-world",
     "clean": "bsb -clean-world",
     "coverage": "nyc report --temp-directory=coverage --reporter=text-lcov | coveralls",
-    "start": " yarn install ; bsb -clean-world ; bsb -make-world -w",
-    "test": "bsb -clean-world ; bsb -make-world ; jest --coverage ; yarn coverage ",
-    "precommit": "lint-staged",
+    "start": "npm run install; bsb -clean-world; bsb -make-world -w",
+    "test": "bsb -clean-world; bsb -make-world; jest --coverage; npm run coverage",
     "watch:test": "jest --coverage --watchAll"
-  },
-  "lint-staged": {
-    "*.{re,rei}": [
-      "refmt --in-place",
-      "git add"
-    ]
   },
   "keywords": [
     "BuckleScript",
@@ -28,22 +21,20 @@
     "sqlite3",
     "better-sqlite3"
   ],
-  "main": "index.js",
+  "main": "./src/Sqlite.bs.js",
   "author": "Nathan A Sculli <scull7@gmail.com>",
   "homepage": "https://github.com/scull7/bs-sqlite/",
   "repository": "https://github.com/scull7/bs-sqlite/",
   "bugs": "https://github.com/scull7/bs-sqlite/issues",
   "license": "MIT",
   "dependencies": {
-    "better-sqlite3": "^4.1.0"
+    "better-sqlite3": "^7.1.4"
   },
   "devDependencies": {
-    "@glennsl/bs-jest": "^0.4.2",
-    "@glennsl/bs-json": "^1.1.2",
-    "bs-platform": "^2.2.1",
-    "coveralls": "^3.0.0",
-    "husky": "^0.14.3",
-    "lint-staged": "^7.1.0",
-    "nyc": "^11.4.1"
+    "@glennsl/bs-jest": "github:glennsl/bs-jest",
+    "@glennsl/bs-json": "github:glennsl/bs-json",
+    "bs-platform": "^9.0.2",
+    "coveralls": "^3.1.0",
+    "nyc": "^15.1.0"
   }
 }

@@ -8,55 +8,49 @@ Bindings to the [better-sqlite3] module for interaction with Sqlite databases.
 ## Usage
 
 ### Basic Select
-```ocaml
-  let db = Sqlite.Connection.make ~path:"test.db" ~memory:Js.true_ ()
-
-  let _ = Sqlite.Connection.prepare db "SELECT 1 + 1 AS result"
-        |> Sqlite.Statement.get [||]
-        |> Js.log
-  )
+```rescript
+let db = Sqlite.Database.make(~path=":memory:", ())
+let _ =
+  Sqlite.Database.prepare(db, "SELECT 1 + 1 AS result") -> Sqlite.Statement.get([]) -> Js.log
 ```
 
 ### Use un-named parameters
-```ocaml
-  let db = Sqlite.Connection.make ~path:"test.db" ~memory:Js.true_ ()
-
-  let _ = Sqlite.Connection.prepare db "SELECT ? + ? AS result"
-        |> Sqlite.Statement.get [|1; 1|]
-        |> Js.log
-  )
+```rescript
+let db = Sqlite.Database.make(~path=":memory:", ())
+let _ =
+  Sqlite.Database.prepare(db, "SELECT 1 + 1 AS result") -> Sqlite.Statement.get([]) -> Js.log
 ```
 
 ### Use named parameters
 
 #### Using :x format
-```ocaml
-  let db = Sqlite.Connection.make ~path:"test.db" ~memory:Js.true_ ()
+```rescript
+let db = Sqlite.Database.make(~path=":memory:", ())
 
-  let _ = Sqlite.Connection.prepare db "SELECT :x + :y AS result"
-        |> Sqlite.Statement.get_named [%bs.obj { x = 1; y = 2 }]
-        |> Js.log
-  )
+let _ =
+  Sqlite.Database.prepare(db, "SELECT :x + :y AS result")
+  -> Sqlite.Statement.get_named({"x": 1, "y": 2})
+  -> Js.log
 ```
 
 #### Using $x format
-```ocaml
-  let db = Sqlite.Connection.make ~path:"test.db" ~memory:Js.true_ ()
+```rescript
+let db = Sqlite.Database.make(~path=":memory:", ())
 
-  let _ = Sqlite.Connection.prepare db "SELECT $x + $y AS result"
-        |> Sqlite.Statement.get_named [%bs.obj { x = 1; y = 2 }]
-        |> Js.log
-  )
+let _ =
+  Sqlite.Database.prepare(db, "SELECT $x + $y AS result")
+  -> Sqlite.Statement.get_named({"x": 1, "y": 2})
+  -> Js.log
 ```
 
 #### Using @x format
-```ocaml
-  let db = Sqlite.Connection.make ~path:"test.db" ~memory:Js.true_ ()
+```rescript
+let db = Sqlite.Database.make(~path=":memory:", ())
 
-  let _ = Sqlite.Connection.prepare db "SELECT @x + @y AS result"
-        |> Sqlite.Statement.get_named [%bs.obj { x = 1; y = 2 }]
-        |> Js.log
-  )
+let _ =
+  Sqlite.Database.prepare(db, "SELECT @x + @y AS result")
+  -> Sqlite.Statement.get_named({"x": 1, "y": 2})
+  -> Js.log
 ```
 
 ## How do I install it?
@@ -64,7 +58,7 @@ Bindings to the [better-sqlite3] module for interaction with Sqlite databases.
 Inside of a BuckleScript project:
 
 ```shell
-yarn add bs-sqlite
+npm install --save bs-sqlite
 ```
 
 Then add `bs-sqlite` to your `bs-dependencies` in `bsconfig.json`:
