@@ -6,7 +6,7 @@
     "build": "bsb -make-world",
     "clean": "bsb -clean-world",
     "coverage": "nyc report --temp-directory=coverage --reporter=text-lcov | coveralls",
-    "start": "npm run install; bsb -clean-world; bsb -make-world -w",
+    "start": "npm install; bsb -clean-world; bsb -make-world -w",
     "test": "bsb -clean-world; bsb -make-world; jest --coverage; npm run coverage",
     "watch:test": "jest --coverage --watchAll"
   },
